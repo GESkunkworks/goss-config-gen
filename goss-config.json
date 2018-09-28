@@ -1,0 +1,55 @@
+{
+    "OutputDirectory": "$HOME/gossamer",
+    "OutputFile": "goss-generated-aliases.sh",
+    "RoleAliases": {
+        "path/role1": "r1",
+        "path/role2": "r2"
+    },
+    "GossamerPath": "/usr/local/bin/gossamer",
+    "AWSCredentialsPath": "$HOME/.aws/credentials",
+    "AWSCLIPath": "/usr/local/bin/aws",
+    "BaseProfile": "default",
+    "Accounts": [
+        {
+            "Id": "123456789012",
+            "Name": "acct-a",
+            "Alias": "a",
+            "Region": "us-east-1",
+            "Role": "path/role1"
+        },
+        {
+            "Id": "987654321098",
+            "Name": "acct-b",
+            "Alias": "b",
+            "Region": "us-east-1",
+            "Role": "path/role1"
+        },
+        {
+            "Id": "123456789012",
+            "Name": "acct-c",
+            "Alias": "c",
+            "Region": "us-east-1",
+            "Role": "path/role2"
+        },
+        {
+            "Id": "111111111111",
+            "Name": "acct-d",
+            "Alias": "d",
+            "Region": "us-east-1",
+            "Role": "path/role2"
+        },
+        {
+            "Id": "222222222222",
+            "Name": "acct-e",
+            "Alias": "e",
+            "Region": "us-east-1",
+            "Role": "path/role3"
+        },
+        {
+            "Id": "333333333333",
+            "Name": "acct-f",
+            "Region": "us-east-1",
+            "Role": "path/role4"
+        }
+    ]
+}

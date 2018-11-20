@@ -1,3 +1,6 @@
+## 1.3.0
+- Allow mapping an alias to one or more roles
+
 ## 1.2.2
 - Add executable paths to config
 

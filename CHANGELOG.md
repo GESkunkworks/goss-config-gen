@@ -1,3 +1,7 @@
+## 1.3.0
+- \[BREAKING\] Allow mapping an alias to one or more roles. This also modifies the `RoleAliases` block in the config file,
+  requiring a configuration update by the user.
+
 ## 1.2.2
 - Add executable paths to config
 

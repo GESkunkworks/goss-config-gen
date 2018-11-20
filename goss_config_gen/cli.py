@@ -123,6 +123,36 @@ def main():
             }
         )
 
+    # Write role alias files
+    aliased_roles = set()
+    for alias, role_names in role_aliases.items():
+        role_file = os.path.join(
+            output_dir,
+            alias + '.json'
+        )
+
+        role_data = []
+        for role in role_names:
+            role_data += roles.get(role)
+            aliased_roles.add(role)
+
+        output_data = {'Roles': role_data}
+
+        with open(role_file, 'w') as f:
+            f.write(json.dumps(output_data, indent=4))
+
+        # Write gossamer alias
+        aliases.append(
+            "alias goss-%(alias)s='%(gossamer_path)s -rolesfile %(role_file)s -profile %(profile)s -serialnumber $MFA "
+            "-o %(aws_creds_path)s -force -tokencode'\n" % {
+                'alias': alias,
+                'gossamer_path': config['GossamerPath'],
+                'role_file': role_file,
+                'profile': config['BaseProfile'],
+                'aws_creds_path': config['AWSCredentialsPath']
+            }
+        )
+
     # Write role files
     for role_name, role_data in roles.items():
         normalized_role_name = role_name.replace('/', '-')
@@ -136,13 +166,11 @@ def main():
         with open(role_file, 'w') as f:
             f.write(json.dumps(output_data, indent=4))
 
-        alias = role_aliases.get(role_name, normalized_role_name)
-
         # Write gossamer alias
         aliases.append(
             "alias goss-%(alias)s='%(gossamer_path)s -rolesfile %(role_file)s -profile %(profile)s -serialnumber $MFA "
             "-o %(aws_creds_path)s -force -tokencode'\n" % {
-                'alias': alias,
+                'alias': normalized_role_name,
                 'gossamer_path': config['GossamerPath'],
                 'role_file': role_file,
                 'profile': config['BaseProfile'],

@@ -62,20 +62,22 @@ Output file that will contain all the generated aliases
 This argument is optional and defaults to `goss-generated-aliases.sh`.
 
 ### `RoleAliases`
-Mapping of role names to aliases.
+Mapping of aliases to roles.
 
-This argument is optional. When not specified, the gossamer command to assume all accounts in the
-same role will use a normalized version (`/`'s are replaced with `-`'s) of the role name. For instance,
-if you are trying to assume role `path/role1` in all accounts, and this parameter is not specified, the
-alias will be generated as `goss-path-role1`. If you specified the following configuration:
+This argument is optional and allows for the creation of an alias that maps to one or more roles.
 
 ```json
 "RoleAliases": {
-    "path/role1": "r1"
+    "all": [
+        "path/role1",
+        "path/role2
+    ]
 }
 ```
 
-Then the generated alias would be `goss-r1`.
+For instance, if you are trying to assume roles `path/role1` and `path/role2` in all accounts using the above
+configuration, the generated alias would be `goss-all`. In addition to these aliases, by default, an alias for each
+normalized version (`/`'s are replaced with `-`'s) of a role name will be created.
 
 ### `GossamerPath`
 
